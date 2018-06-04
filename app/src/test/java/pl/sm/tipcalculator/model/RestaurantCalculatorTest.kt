@@ -1,6 +1,6 @@
 package pl.sm.tipcalculator.model
 
-import org.junit.Assert.assertEquals
+import junit.framework.Assert.assertEquals
 import org.junit.Before
 import org.junit.Test
 
