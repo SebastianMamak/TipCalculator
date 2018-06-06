@@ -13,7 +13,7 @@ import pl.sm.tipcalculator.R
 import pl.sm.tipcalculator.databinding.ActivityMainBinding
 import pl.sm.tipcalculator.viewmodel.CalculatorViewModel
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), SaveDialogFragment.Callback {
 
     lateinit var binding: ActivityMainBinding
 
@@ -33,7 +33,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.menu_main, menu)
         return true
     }
@@ -43,8 +42,20 @@ class MainActivity : AppCompatActivity() {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         return when (item.itemId) {
-            R.id.action_settings -> true
+            R.id.action_save -> {
+                showSaveDialog()
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun showSaveDialog() {
+        val saveFragment = SaveDialogFragment()
+        saveFragment.show(supportFragmentManager, "SaveDialog")
+    }
+
+    override fun onSaveTip(name: String) {
+        Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
     }
 }
