@@ -32,20 +32,23 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //KOTLIN
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
-    //SUPPORT
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
-    implementation 'com.android.support:design:27.1.1'
+    // Support
+    implementation "com.android.support:appcompat-v7:$support_library"
+    implementation "com.android.support.constraint:constraint-layout:$constraint_layout"
+    implementation "com.android.support:design:$support_library"
+    implementation "com.android.support:support-v4:$support_library"
     kapt "com.android.databinding:compiler:$android_plugin"
     implementation "android.arch.lifecycle:extensions:$arch_comp"
 
-    //TEST
-    testImplementation 'junit:junit:4.12'
+    // Test
+    testImplementation "junit:junit:$junit"
     testImplementation "org.mockito:mockito-core:$mockito"
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     testImplementation "android.arch.core:core-testing:$arch_comp"
+
+    androidTestImplementation "com.android.support.test:runner:$android_junit_runner"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$espresso"
+
 }

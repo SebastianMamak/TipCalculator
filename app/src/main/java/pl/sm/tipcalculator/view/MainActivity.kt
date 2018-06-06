@@ -13,7 +13,7 @@ import pl.sm.tipcalculator.R
 import pl.sm.tipcalculator.databinding.ActivityMainBinding
 import pl.sm.tipcalculator.viewmodel.CalculatorViewModel
 
-class MainActivity : AppCompatActivity(), SaveDialogFragment.Callback {
+class MainActivity : AppCompatActivity(), SaveDialogFragment.Callback, LoadDialogFragment.Callback {
 
     lateinit var binding: ActivityMainBinding
 
@@ -50,6 +50,11 @@ class MainActivity : AppCompatActivity(), SaveDialogFragment.Callback {
         }
     }
 
+    private fun showLoadDialog() {
+        val loadFragment = LoadDialogFragment()
+        loadFragment.show(supportFragmentManager, "LoadDialog")
+    }
+
     private fun showSaveDialog() {
         val saveFragment = SaveDialogFragment()
         saveFragment.show(supportFragmentManager, "SaveDialog")
@@ -58,5 +63,11 @@ class MainActivity : AppCompatActivity(), SaveDialogFragment.Callback {
     override fun onSaveTip(name: String) {
         binding.vm?.saveCurrentTip(name)
         Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun onTipSelected(name: String) {
+        binding.vm?.loadTipCalculation(name)
+        Snackbar.make(binding.root, "Saved $name", Snackbar.LENGTH_SHORT).show()
+
     }
 }
